@@ -98,10 +98,14 @@ public class Robot extends TimedRobot {
     boolean launcherOn = false;
     double leftLauncherSpeed = 0.40;
     double rightLauncherSpeed = 0.40;
+    PilotController.DesiredDirection desiredDirection = PilotController.DesiredDirection.NoChange;
 
     curSpeed = m_controller.getDriverSpeed();
     curTurn = m_controller.getDriverTurn();
     launcherOn = m_controller.getLauncherButton();
+    desiredDirection = m_controller.getPilotChangeControls();
+
+    m_drivetrain.setDesiredDirection(desiredDirection);
     
     m_drivetrain.arcadeDrive(curSpeed, curTurn);
 

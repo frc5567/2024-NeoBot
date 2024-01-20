@@ -18,6 +18,12 @@ public class Drivetrain {
     private DifferentialDrive m_drive;
 
     /**
+     * The variable that keeps track of current drivetrain direction.
+     * True is initial direction (forward). False is reversed control.
+     */
+    private boolean m_isDrivetrainForward;
+
+    /**
      * Main constructor for the drivetrain class
      * @param pidgey IMU pigeon instance
      */
@@ -31,6 +37,8 @@ public class Drivetrain {
         m_rightGroup = new MotorControllerGroup(m_rightLeader, m_rightFollower);   
         
         m_drive = new DifferentialDrive(m_leftGroup, m_rightGroup);
+
+        m_isDrivetrainForward = true;
     }
 
     /**
@@ -44,6 +52,7 @@ public class Drivetrain {
         m_rightLeader.setInverted(true);
         m_rightFollower.setInverted(true);
 
+        m_isDrivetrainForward = true;
     }
 
     /**
@@ -52,6 +61,27 @@ public class Drivetrain {
      * @param turn Value between -1 and 1 for turning
      */
     public void arcadeDrive(double speed, double turn) {
-        m_drive.arcadeDrive(speed, turn);
+        if(m_isDrivetrainForward == true) {
+            m_drive.arcadeDrive(speed, turn);
+        }
+        else {
+            m_drive.arcadeDrive(-speed, -turn);
+        }
+    }
+
+    /**
+     * Method used to set motor directions while driving.
+     * 
+     * @param desiredDirection true represents the initial direction, false represents the reversed controls.
+     */
+    public void setDesiredDirection(PilotController.DesiredDirection desiredDirection) {
+
+        if(desiredDirection == PilotController.DesiredDirection.Initial) {
+            m_isDrivetrainForward = true;
+        }
+        else if(desiredDirection == PilotController.DesiredDirection.Reversed) {
+            m_isDrivetrainForward = false;
+        }
+       
     }
 }
