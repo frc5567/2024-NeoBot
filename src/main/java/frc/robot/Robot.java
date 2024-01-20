@@ -98,6 +98,8 @@ public class Robot extends TimedRobot {
     boolean launcherOn = false;
     double leftLauncherAmpSpeed = 0.30;
     double rightLauncherAmpSpeed = 0.30;
+    double leftLauncherSpeakerSpeed = 0.30;
+    double rightLauncherSpeakerSpeed = 0.30;
 
     curSpeed = m_controller.getDriverSpeed();
     curTurn = m_controller.getDriverTurn();
@@ -109,8 +111,9 @@ public class Robot extends TimedRobot {
     if (ampLauncherOn) {
       m_launcher.setSpeed(leftLauncherAmpSpeed, rightLauncherAmpSpeed);
     }
-    
-
+    else if(speakerLauncherOn) {
+      m_launcher.setSpeed(leftLauncherSpeakerSpeed, rightLauncherSpeakerSpeed);
+    }
     else {
       m_launcher.setSpeed(0.0, 0.0);
     }
