@@ -96,18 +96,20 @@ public class Robot extends TimedRobot {
     double curSpeed = 0.0;
     double curTurn = 0.0;
     boolean launcherOn = false;
-    double leftLauncherSpeed = 0.30;
-    double rightLauncherSpeed = 0.30;
+    double leftLauncherAmpSpeed = 0.30;
+    double rightLauncherAmpSpeed = 0.30;
 
     curSpeed = m_controller.getDriverSpeed();
     curTurn = m_controller.getDriverTurn();
-    launcherOn = m_controller.getLauncherButton();
-    
+    ampLauncherOn = m_controller.getAmpLauncherButton();
+    speakerLauncherOn = m_controller.getSpeakerLauncherButton();
+
     m_drivetrain.arcadeDrive(curSpeed, curTurn);
 
-    if (launcherOn) {
-      m_launcher.setSpeed(leftLauncherSpeed, rightLauncherSpeed);
+    if (ampLauncherOn) {
+      m_launcher.setSpeed(leftLauncherAmpSpeed, rightLauncherAmpSpeed);
     }
+    
 
     else {
       m_launcher.setSpeed(0.0, 0.0);
