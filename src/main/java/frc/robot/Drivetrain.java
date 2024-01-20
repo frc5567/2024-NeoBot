@@ -65,7 +65,7 @@ public class Drivetrain {
             m_drive.arcadeDrive(speed, turn);
         }
         else {
-            m_drive.arcadeDrive(-speed, -turn);
+            m_drive.arcadeDrive(-speed, turn);
         }
     }
 
