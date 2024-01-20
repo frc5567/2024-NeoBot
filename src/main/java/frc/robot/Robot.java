@@ -96,8 +96,8 @@ public class Robot extends TimedRobot {
     double curSpeed = 0.0;
     double curTurn = 0.0;
     boolean launcherOn = false;
-    double leftLauncherSpeed = 0.40;
-    double rightLauncherSpeed = 0.40;
+    double leftLauncherSpeed = 0.30;
+    double rightLauncherSpeed = 0.30;
 
     curSpeed = m_controller.getDriverSpeed();
     curTurn = m_controller.getDriverTurn();
