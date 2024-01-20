@@ -95,16 +95,20 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     double curSpeed = 0.0;
     double curTurn = 0.0;
-    boolean launcherOn = false;
+
+    boolean ampLauncherOn = false;
+    boolean speakerLauncherOn = false;
+
     double leftLauncherAmpSpeed = 0.30;
     double rightLauncherAmpSpeed = 0.30;
-    double leftLauncherSpeakerSpeed = 0.30;
-    double rightLauncherSpeakerSpeed = 0.30;
+
+    double leftLauncherSpeakerSpeed = 0.35;
+    double rightLauncherSpeakerSpeed = 0.35;
 
     curSpeed = m_controller.getDriverSpeed();
     curTurn = m_controller.getDriverTurn();
-    ampLauncherOn = m_controller.getAmpLauncherButton();
-    speakerLauncherOn = m_controller.getSpeakerLauncherButton();
+    ampLauncherOn = m_controller.getAmpLaunchButton();
+    speakerLauncherOn = m_controller.getSpeakerLaunchButton();
 
     m_drivetrain.arcadeDrive(curSpeed, curTurn);
 

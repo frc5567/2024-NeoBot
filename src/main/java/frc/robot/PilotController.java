@@ -36,12 +36,12 @@ public class PilotController {
         return adjustForDeadband(scaledTurnInput);
     }
 
-    public boolean getAmpLauncherButton() {
+    public boolean getAmpLaunchButton() {
         boolean ampLauncherInput = m_controller.getAButton();
         return ampLauncherInput;
     }
 
-    public boolean getSpeakerLauncherButton() {
+    public boolean getSpeakerLaunchButton() {
         boolean speakerLauncherInput = m_controller.getBButton();
         return speakerLauncherInput;
     }
