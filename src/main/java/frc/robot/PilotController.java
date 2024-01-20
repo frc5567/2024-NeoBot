@@ -11,6 +11,12 @@ public class PilotController {
 
     private SlewRateLimiter m_accelFilter;
 
+    public enum DesiredDirection {
+        Initial, 
+        Reversed,
+        NoChange
+    };
+
     /**
      * Constructor for the pilot controller. Instantiates the xbox controller.
      */
@@ -44,6 +50,19 @@ public class PilotController {
     public boolean getSpeakerLaunchButton() {
         boolean speakerLauncherInput = m_controller.getBButton();
         return speakerLauncherInput;
+    }
+
+    public DesiredDirection getPilotChangeControls() {
+        DesiredDirection desiredDirection = DesiredDirection.NoChange;
+        
+        if(m_controller.getRightBumper()) {
+            desiredDirection = DesiredDirection.Initial;
+        }
+        else if (m_controller.getLeftBumper()){
+            desiredDirection = DesiredDirection.Reversed;
+        }
+
+       return desiredDirection;
     }
     
     /**
