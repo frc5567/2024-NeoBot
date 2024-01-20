@@ -22,6 +22,7 @@ public class Robot extends TimedRobot {
 
   private Drivetrain m_drivetrain; 
   private PilotController m_controller;
+  private Launcher m_launcher;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -35,6 +36,7 @@ public class Robot extends TimedRobot {
 
     m_drivetrain = new Drivetrain();
     m_controller = new PilotController();
+    m_launcher = new Launcher();
 
     m_drivetrain.initDrivetrain();
   }
@@ -93,11 +95,23 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     double curSpeed = 0.0;
     double curTurn = 0.0;
+    boolean launcherOn = false;
+    double leftLauncherSpeed = 0.30;
+    double rightLauncherSpeed = 0.30;
 
     curSpeed = m_controller.getDriverSpeed();
     curTurn = m_controller.getDriverTurn();
+    launcherOn = m_controller.getLauncherButton();
     
     m_drivetrain.arcadeDrive(curSpeed, curTurn);
+
+    if (launcherOn) {
+      m_launcher.setSpeed(leftLauncherSpeed, rightLauncherSpeed);
+    }
+
+    else {
+      m_launcher.setSpeed(0.0, 0.0);
+    }
   }
 
   /** This function is called once when the robot is disabled. */
@@ -110,6 +124,7 @@ public class Robot extends TimedRobot {
     double curSpeed = 0.0;
     double curTurn = 0.0;
     m_drivetrain.arcadeDrive(curSpeed, curTurn);
+    m_launcher.setSpeed(0.0, 0.0);
   }
 
   /** This function is called once when test mode is enabled. */
@@ -122,6 +137,7 @@ public class Robot extends TimedRobot {
     double curSpeed = 0.0;
     double curTurn = 0.0;
     m_drivetrain.arcadeDrive(curSpeed, curTurn);
+    m_launcher.setSpeed(0.0, 0.0);
   }
 
   /** This function is called once when the robot is first started up. */
@@ -134,5 +150,6 @@ public class Robot extends TimedRobot {
     double curSpeed = 0.0;
     double curTurn = 0.0;
     m_drivetrain.arcadeDrive(curSpeed, curTurn);
+    m_launcher.setSpeed(0.0, 0.0);
   }
 }

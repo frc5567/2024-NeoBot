@@ -27,15 +27,19 @@ public class PilotController {
     
     public double getDriverTurn() {
         //Adjusting for a deadband to compensate for controller stick drift.
-        Double turnInput = -m_controller.getLeftX();
-        Double squaredTurnInput = turnInput * turnInput;
+        double turnInput = -m_controller.getLeftX();
+        double squaredTurnInput = turnInput * turnInput;
         squaredTurnInput = Math.copySign(squaredTurnInput, turnInput);
 
-        Double scaledTurnInput = (squaredTurnInput * RobotMap.PilotControllerConstants.TURN_SCALER);
+        double scaledTurnInput = (squaredTurnInput * RobotMap.PilotControllerConstants.TURN_SCALER);
 
         return adjustForDeadband(scaledTurnInput);
     }
 
+    public boolean getLauncherButton() {
+        boolean launcherInput = m_controller.getAButton();
+        return launcherInput;
+    }
     
     /**
      * Deadband method for stick.
