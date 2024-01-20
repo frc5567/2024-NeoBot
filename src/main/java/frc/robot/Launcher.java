@@ -14,6 +14,7 @@ public class Launcher {
 
         //TODO: Can ID for right launcher is currently 18. WILL NEED TO UPDATE.
         m_launcherRight = new TalonSRX(18);
+        m_launcherRight.setInverted(true);
     }
 
     /**
