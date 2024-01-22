@@ -1,10 +1,9 @@
 package frc.robot;
 
+import com.revrobotics.CANSparkLowLevel;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 public class Drivetrain {
     private CANSparkMax m_leftLeader;
@@ -12,8 +11,7 @@ public class Drivetrain {
     private CANSparkMax m_leftFollower;
     private CANSparkMax m_rightFollower;
 
-    private MotorControllerGroup m_leftGroup;
-    private MotorControllerGroup m_rightGroup;
+
 
     private DifferentialDrive m_drive;
 
@@ -28,15 +26,15 @@ public class Drivetrain {
      * @param pidgey IMU pigeon instance
      */
     public Drivetrain() {
-        m_leftLeader = new CANSparkMax(RobotMap.DrivetrainConstants.LEFT_LEADER_CAN_ID, MotorType.kBrushless);
-        m_rightLeader = new CANSparkMax (RobotMap.DrivetrainConstants.RIGHT_LEADER_CAN_ID, MotorType.kBrushless);
-        m_leftFollower = new CANSparkMax(RobotMap.DrivetrainConstants.LEFT_FOLLOWER_CAN_ID, MotorType.kBrushless);
-        m_rightFollower = new CANSparkMax(RobotMap.DrivetrainConstants.RIGHT_FOLLOWER_CAN_ID, MotorType.kBrushless);
+        m_leftLeader = new CANSparkMax(RobotMap.DrivetrainConstants.LEFT_LEADER_CAN_ID, CANSparkLowLevel.MotorType.kBrushless);
+        m_rightLeader = new CANSparkMax (RobotMap.DrivetrainConstants.RIGHT_LEADER_CAN_ID, CANSparkLowLevel.MotorType.kBrushless);
+        m_leftFollower = new CANSparkMax(RobotMap.DrivetrainConstants.LEFT_FOLLOWER_CAN_ID, CANSparkLowLevel.MotorType.kBrushless);
+        m_rightFollower = new CANSparkMax(RobotMap.DrivetrainConstants.RIGHT_FOLLOWER_CAN_ID, CANSparkLowLevel.MotorType.kBrushless);
         
-        m_leftGroup = new MotorControllerGroup(m_leftLeader, m_leftFollower);
-        m_rightGroup = new MotorControllerGroup(m_rightLeader, m_rightFollower);   
+        m_leftFollower.follow(m_leftLeader);
+        m_rightFollower.follow(m_rightLeader);
         
-        m_drive = new DifferentialDrive(m_leftGroup, m_rightGroup);
+        m_drive = new DifferentialDrive(m_leftLeader, m_rightLeader);
 
         m_isDrivetrainForward = true;
     }

@@ -1,6 +1,5 @@
 package frc.robot;
 
-import com.ctre.phoenix.*;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 

@@ -23,6 +23,7 @@ public class Robot extends TimedRobot {
   private Drivetrain m_drivetrain; 
   private PilotController m_controller;
   private Launcher m_launcher;
+  private Intake m_intake;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -37,6 +38,7 @@ public class Robot extends TimedRobot {
     m_drivetrain = new Drivetrain();
     m_controller = new PilotController();
     m_launcher = new Launcher();
+    m_intake = new Intake();
 
     m_drivetrain.initDrivetrain();
   }
@@ -98,12 +100,15 @@ public class Robot extends TimedRobot {
 
     boolean ampLauncherOn = false;
     boolean speakerLauncherOn = false;
+    boolean intakeOn = false;
 
     double leftLauncherAmpSpeed = 0.30;
     double rightLauncherAmpSpeed = 0.30;
 
-    double leftLauncherSpeakerSpeed = 0.35;
-    double rightLauncherSpeakerSpeed = 0.35;
+    double leftLauncherSpeakerSpeed = 0.80;
+    double rightLauncherSpeakerSpeed = 0.80;
+
+    double intakeSpeed = 0.40;
     
     PilotController.DesiredDirection desiredDirection = PilotController.DesiredDirection.NoChange;
 
@@ -112,11 +117,17 @@ public class Robot extends TimedRobot {
     ampLauncherOn = m_controller.getAmpLaunchButton();
     speakerLauncherOn = m_controller.getSpeakerLaunchButton();
     desiredDirection = m_controller.getPilotChangeControls();
+    intakeOn = m_controller.getIntakeButton();
 
     m_drivetrain.setDesiredDirection(desiredDirection);
 
     m_drivetrain.arcadeDrive(curSpeed, curTurn);
 
+    /**
+     * If ampLauncherOn is true, set the speed of the launch motors to amp speed.
+     * Else if speakerLauncherOn is true, set the speed of the launch motors to speaker speed.
+     * If we are not launching, set the speed to 0.
+     */
     if (ampLauncherOn) {
       m_launcher.setSpeed(leftLauncherAmpSpeed, rightLauncherAmpSpeed);
     }
@@ -125,6 +136,17 @@ public class Robot extends TimedRobot {
     }
     else {
       m_launcher.setSpeed(0.0, 0.0);
+    }
+
+    /**
+     * If intakeOn is true, sets the speed of the intake.
+     * If intakeOn is false, sets the speed to 0.
+     */
+    if (intakeOn) {
+      m_intake.setSpeed(intakeSpeed);
+    }
+    else {
+      m_intake.setSpeed(0.0);
     }
   }
 
