@@ -108,7 +108,7 @@ public class Robot extends TimedRobot {
     double leftLauncherSpeakerSpeed = 0.80;
     double rightLauncherSpeakerSpeed = 0.80;
 
-    double intakeSpeed = 0.40;
+    double intakeSpeed = 0.80;
     
     PilotController.DesiredDirection desiredDirection = PilotController.DesiredDirection.NoChange;
 
