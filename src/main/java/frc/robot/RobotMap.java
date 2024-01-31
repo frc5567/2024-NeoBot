@@ -29,7 +29,7 @@ public class RobotMap {
 
     }
 
-        /**
+    /**
      * All pilot controller constants
      */
     public static class PilotControllerConstants {
@@ -54,5 +54,21 @@ public class RobotMap {
          * Initial value matches 2022 robot value of 2.25, but can be adjusted as needed
          */
         public static final double ACCEL_SLEW_RATE = 1.6;
+    }
+
+    /**
+     * All Indexer constants
+     */
+    public static class IndexerConstants {
+
+        /**
+         * Speed set to index motor for loading note from intake
+         */
+        public static final double LOAD_SPEED = 0.4;
+
+        /**
+         * Speed set to index motor for feeding note into launcher
+         */
+        public static final double FEED_SPEED = 0.6;
     }
 }
