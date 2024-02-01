@@ -11,8 +11,6 @@ public class Drivetrain {
     private CANSparkMax m_leftFollower;
     private CANSparkMax m_rightFollower;
 
-
-
     private DifferentialDrive m_drive;
 
     /**
