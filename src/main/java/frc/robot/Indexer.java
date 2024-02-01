@@ -19,10 +19,10 @@ public class Indexer {
      */
     public Indexer() {
         //TODO: Set the IDs for both
-        m_indexMotor = new WPI_TalonSRX(10);
+        m_indexMotor = new WPI_TalonSRX(RobotMap.IndexerConstants.INDEXER_CAN_ID);
 
         //DIO 0, not on the CAN bus
-        m_indexSensor = new DigitalInput(0);
+        m_indexSensor = new DigitalInput(RobotMap.IndexerConstants.SENSOR_PORT);
     }
          
     /**
