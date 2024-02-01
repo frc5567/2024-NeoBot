@@ -9,7 +9,6 @@
 |Left Follower   | 7             |
 |Right Follower  | 6             |
 |Index           | 10            |
-|Left Follower   | 7             |
 |Intake          | 19            |
 |Left Launcher   | 17            |
 |Right Launcher  | 18            |
