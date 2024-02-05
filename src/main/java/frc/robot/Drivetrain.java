@@ -65,6 +65,10 @@ public class Drivetrain {
         }
     }
 
+    public void tankDrive(double ls, double rs) {
+        m_drive.tankDrive(ls, rs);
+    }
+
     /**
      * Method used to set motor directions while driving.
      * 
